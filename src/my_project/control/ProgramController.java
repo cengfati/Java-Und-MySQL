@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.DatabaseController;
 import KAGO_framework.control.ViewController;
 import my_project.view.DatabaseGUI;
 
@@ -17,6 +18,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private DatabaseController dbc;
 
     /**
      * Konstruktor
@@ -34,10 +36,15 @@ public class ProgramController {
      */
     public void startProgram() {
         viewController.getDrawFrame().setContentPane(new DatabaseGUI(this).getMainPanel());
+        dbc = new DatabaseController();
     }
 
+    public DatabaseController getDBC(){
+        return dbc;
+    };
+
     public void closeProgram(){
-        // todo Eine eventuelle Datenbankverbindung wird geschlossen. Danach wird das Programm beendet.
+        // todo 2 Eine eventuelle Datenbankverbindung wird geschlossen. Danach wird das Programm beendet.
 
     }
 

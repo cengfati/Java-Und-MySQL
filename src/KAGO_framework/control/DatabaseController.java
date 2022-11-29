@@ -6,6 +6,7 @@ import KAGO_framework.model.abitur.datenstrukturen.Queue;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.TimeZone;
 
 /**
  * Der Database-Controller dient zur Herstellung einer Verbindung mit einem SQL-DBMS und
@@ -58,7 +59,7 @@ public class DatabaseController {
     public boolean connect() {
         if(!isConnected()) {
             try {
-                this.connection = DriverManager.getConnection("jdbc:mysql://"+connectionUrl+":"+port+"/"+database, user, pass);
+                this.connection = DriverManager.getConnection("jdbc:mysql://"+connectionUrl+":"+port+"/"+database+"?serverTimezone=" + TimeZone.getDefault().getID(), user, pass);
                 System.out.println("Verbindung zur Datenbank "+database+" auf Server "+connectionUrl+" erfolgreich hergestellt.");
                 return true;
             } catch (SQLException e) {

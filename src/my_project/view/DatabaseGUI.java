@@ -28,15 +28,15 @@ public class DatabaseGUI {
         SQLAusführenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo Der eingegeben SQL-Code wird auf der Datenbank ausgeführt (Database-Controller verwenden). Dann wird entweder im Feld unter dem Button das Ergebnis angezeigt oder die Fehlermeldung bei SQL-Fehlern
+                // todo 3 Der eingegeben SQL-Code wird auf der Datenbank ausgeführt (Database-Controller verwenden). Dann wird entweder im Feld unter dem Button das Ergebnis angezeigt oder die Fehlermeldung bei SQL-Fehlern
 
             }
         });
         verbindungHerstellenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // todo Es wird eine SQL-Verbindung hergestellt (Database-Controller verwenden)
-
+                // todo 1 Es wird eine SQL-Verbindung hergestellt (Database-Controller verwenden)
+                programController.getDBC().connect();
             }
         });
     }
