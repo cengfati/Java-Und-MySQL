@@ -18,7 +18,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private DatabaseController dbc;
+    private DatabaseController dbController;
 
     /**
      * Konstruktor
@@ -29,23 +29,26 @@ public class ProgramController {
      */
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
+        this.dbController = new DatabaseController();
     }
 
     /**
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen. Achtung: funktioniert nicht im Szenario-Modus
      */
     public void startProgram() {
-        viewController.getDrawFrame().setContentPane(new DatabaseGUI(this).getMainPanel());
-        dbc = new DatabaseController();
+        viewController.getDrawFrame().setContentPane(new DatabaseGUI(this, dbController).getMainPanel());
     }
 
     public DatabaseController getDBC(){
-        return dbc;
-    };
+        return dbController;
+    }
 
     public void closeProgram(){
-        // todo 2 Eine eventuelle Datenbankverbindung wird geschlossen. Danach wird das Programm beendet.
-
+        // todo Eine eventuelle Datenbankverbindung wird geschlossen. Danach wird das Programm beendet.
+        if(dbController.isConnected()) {
+            dbController.disconnect();
+            System.exit(0);
+        }
     }
 
     /**
